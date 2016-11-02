@@ -41,6 +41,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void addProduct(Product product) {
+        productRepository.addProduct(product);
+    }
+
+    @Override
     public void updateAllStock() {
         List<Product> allProducts = productRepository.getAllProducts();
         allProducts.stream()
