@@ -56,6 +56,7 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
+        resolver.setMaxUploadSize(1024L * 1024L * 10L);
         return resolver;
     }
 

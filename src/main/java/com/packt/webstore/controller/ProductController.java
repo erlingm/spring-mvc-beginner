@@ -95,10 +95,10 @@ public class ProductController {
         if (suppressedFields.length > 0)
             throw new RuntimeException("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
         MultipartFile productImage = newProduct.getProductImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        if (rootDirectory != null && productImage != null && !productImage.isEmpty()) {
+        String imageDirectory = request.getSession().getServletContext().getRealPath("/resources/images/");
+        if (imageDirectory != null && productImage != null && !productImage.isEmpty()) {
             try {
-                File dest = new File(rootDirectory + "resources/images/" + newProduct.getProductId() + ".png");
+                File dest = new File(imageDirectory + newProduct.getProductId() + ".png");
                 productImage.transferTo(dest);
             } catch (IOException e) {
                 throw new RuntimeException("Product Image saving failed", e);
