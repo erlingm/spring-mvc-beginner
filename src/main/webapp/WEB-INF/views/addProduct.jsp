@@ -64,24 +64,28 @@
                     <form:input path="unitsInStock" id="unitsInStock" cssClass="form-input-large"/>
                 </div>
             </div>
+<%--
             <div class="form-group">
                 <label class="control-label col-lg-2" for="unitsInOrder">Units in Order</label>
                 <div class="col-lg-10">
                     <form:input path="unitsInOrder" id="unitsInOrder" cssClass="form-input-large"/>
                 </div>
             </div>
+--%>
             <div class="form-group">
                 <label class="control-label col-lg-2" for="description">Description</label>
                 <div class="col-lg-10">
                     <form:textarea path="description" id="description" rows="2"/>
                 </div>
             </div>
+<%--
             <div class="form-group">
                 <label class="control-label col-lg-2" for="discontinued">Discontinued</label>
                 <div class="col-lg-10">
                     <form:checkbox path="discontinued" id="discontinued"/>
                 </div>
             </div>
+--%>
             <div class="form-group">
                 <label class="control-label col-lg-2" for="condition">Condition</label>
                 <div class="col-lg-10">
