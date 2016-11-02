@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +31,7 @@ public class InMemoryProductRepository implements ProductRepository {
     @Override
     public List<Product> getProductsByCategory(String category) {
         String sql = "SELECT * FROM PRODUCTS WHERE CATEGORY = :category";
-        Map<String, Object> params = new HashMap<>();
-        params.put("category", category);
+        Map<String, Object> params = Collections.singletonMap("category", category);
         return jdbcTemplate.query(sql, params, new ProductMapper());
     }
 
@@ -39,6 +39,13 @@ public class InMemoryProductRepository implements ProductRepository {
     public List<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
         String sql = "SELECT * FROM PRODUCTS WHERE CATEGORY IN (:categories) AND MANUFACTURER IN (:brands)";
         return jdbcTemplate.query(sql, filterParams, new ProductMapper());
+    }
+
+    @Override
+    public Product getProductById(String productId) {
+        String sql = "SELECT * FROM PRODUCTS WHERE ID = :id";
+        Map<String, Object> params = Collections.singletonMap("id", productId);
+        return jdbcTemplate.queryForObject(sql, params, new ProductMapper());
     }
 
     @Override
