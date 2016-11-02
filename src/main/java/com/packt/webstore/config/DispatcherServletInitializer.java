@@ -1,6 +1,9 @@
 package com.packt.webstore.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 /**
  * Created by Erling Molde on 31.10.2016.
@@ -20,4 +23,12 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[]{
+                new CharacterEncodingFilter("UTF-8", true)
+        };
+    }
+
 }
