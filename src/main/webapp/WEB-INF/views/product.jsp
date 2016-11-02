@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>
-                <strong>Item code : </strong><span class="label-warning">${product.productId}</span>
+                <strong>Item code : </strong><span class="label label-warning">${product.productId}</span>
             </p>
             <p>
                 <strong>Manufacturer : </strong> ${product.manufacturer}
@@ -41,6 +42,7 @@
             </p>
             <h4>${product.unitPrice} USD</h4>
             <p>
+                <a href="<spring:url value="/market/products"/>" class="btn btn-default"><span class="glyphicon glyphicon-hand-left"></span> Back </a>
                 <a href="#" class="btn btn-warning btn-large">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Order Now
                 </a>
