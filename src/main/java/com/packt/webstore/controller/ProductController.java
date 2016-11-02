@@ -46,12 +46,18 @@ public class ProductController {
 
     @RequestMapping("/products/{category}/{price}")
     public String filterProducts(@MatrixVariable(pathVar = "price") Map<String, String> priceRange, @PathVariable String category, @RequestParam String brand, Model model) {
-        List<Product> productsByCategory = productService.getProductsByCategory(category);
-        List<Product> products = productsByCategory.stream()
-                .filter(p -> p.getUnitPrice().compareTo(new BigDecimal(priceRange.get("low"))) >= 0)
-                .filter(p -> p.getUnitPrice().compareTo(new BigDecimal(priceRange.get("high"))) <= 0)
-                .filter(p -> brand.equals(p.getManufacturer()))
-                .collect(toList());
+        List<Product> products;
+        List<Product> products1 = productService.getProductsByCategory(category);
+
+        if (products1.isEmpty()) {
+            products = products1;
+        } else {
+            products = products1.stream()
+                    .filter(p -> !priceRange.containsKey("low") || p.getUnitPrice().compareTo(new BigDecimal(priceRange.get("low"))) >= 0)
+                    .filter(p -> !priceRange.containsKey("high") || p.getUnitPrice().compareTo(new BigDecimal(priceRange.get("high"))) <= 0)
+                    .filter(p -> brand == null || brand.trim().isEmpty() || brand.equals(p.getManufacturer()))
+                    .collect(toList());
+        }
         model.addAttribute("products", products);
         return "products";
     }
