@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Erling Molde on 02.11.2016.
@@ -24,6 +26,17 @@ public class InMemoryCustomerRepository implements CustomerRepository {
     @Override
     public List<Customer> getAllCustomers() {
         return jdbcTemplate.query("SELECT * FROM customers", Collections.emptyMap(), new CustomerMapper());
+    }
+
+    @Override
+    public void addCustomer(Customer newCustomer) {
+        String sql = "INSERT INTO CUSTOMERS (ID, NAME, ADDRESS, NUMBER_OF_ORDERS) VALUES (:id, :name, :address, :noOfOrders)";
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", newCustomer.getCustomerId());
+        params.put("name", newCustomer.getName());
+        params.put("address", newCustomer.getAddress());
+        params.put("noOfOrders", newCustomer.getNoOfOrdersMade());
+        jdbcTemplate.update(sql, params);
     }
 
     private static class CustomerMapper implements RowMapper<Customer> {
