@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by Erling Molde on 02.11.2016.
@@ -34,6 +33,12 @@ public class InMemoryProductRepository implements ProductRepository {
         Map<String, Object> params = new HashMap<>();
         params.put("category", category);
         return jdbcTemplate.query(sql, params, new ProductMapper());
+    }
+
+    @Override
+    public List<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
+        String sql = "SELECT * FROM PRODUCTS WHERE CATEGORY IN (:categories) AND MANUFACTURER IN (:brands)";
+        return jdbcTemplate.query(sql, filterParams, new ProductMapper());
     }
 
     @Override
