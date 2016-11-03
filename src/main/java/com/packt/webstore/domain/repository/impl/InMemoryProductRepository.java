@@ -2,7 +2,9 @@ package com.packt.webstore.domain.repository.impl;
 
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
+import com.packt.webstore.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -45,7 +47,11 @@ public class InMemoryProductRepository implements ProductRepository {
     public Product getProductById(String productId) {
         String sql = "SELECT * FROM PRODUCTS WHERE ID = :id";
         Map<String, Object> params = Collections.singletonMap("id", productId);
-        return jdbcTemplate.queryForObject(sql, params, new ProductMapper());
+        try {
+            return jdbcTemplate.queryForObject(sql, params, new ProductMapper());
+        } catch (DataAccessException e) {
+            throw new ProductNotFoundException(productId);
+        }
     }
 
     @Override
