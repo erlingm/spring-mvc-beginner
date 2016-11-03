@@ -11,22 +11,18 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <title>Product details</title>
+    <title>Invalid promo code</title>
 </head>
 <body>
 <section>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="alert alert-danger">There is no product found with the Product id ${invalidProductId}</h1>
+            <h1 class="alert alert-danger">Invalid promo code</h1>
         </div>
     </div>
 </section>
 
 <section>
-    <div class="container">
-        <p>${url}</p>
-        <p>${exception}</p>
-    </div>
     <div class="container">
         <p>
             <a href="<spring:url value="/market/products"/>" class="btn btn-primary">
