@@ -143,7 +143,10 @@ public class ProductController {
 
     @InitBinder
     public void initializeBinder(WebDataBinder binder) {
-        binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer", "category", "unitsInStock", "condition", "productImage", "productManual");
+        binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer",
+                "category", "unitsInStock", "condition",
+                "productImage", "productManual",
+                "language");
 
         /* Example of customizing a PropertyEditor to translate java.util.Date from a form to a bean */
         DateFormat dateFormat = new SimpleDateFormat("MMM d, YYYY");

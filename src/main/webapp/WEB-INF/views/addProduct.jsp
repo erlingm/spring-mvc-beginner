@@ -15,13 +15,16 @@
     <title><spring:message code="addProduct.page.title"/></title>
 </head>
 <body>
-<section>
-    <div class="container">
+<section class="container">
+    <div class="pull-right">
+        <a href="?language=en">English</a> | <a href="?language=nl">Dutch</a>
+    </div>
+</section>
+<section class="container">
         <div class="jumbotron">
             <h1><spring:message code="addProduct.body.title"/></h1>
             <p><spring:message code="addProduct.body.subtitle"/></p>
         </div>
-    </div>
 </section>
 
 <section class="container">

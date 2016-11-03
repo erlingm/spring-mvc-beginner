@@ -11,14 +11,19 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <title>Product details</title>
+    <title><spring:message code="product.page.title"/></title>
 </head>
 <body>
+<section class="container">
+    <div class="pull-right">
+        <a href="?language=en&amp;id=${product.productId}">English</a> | <a href="?language=nl&amp;id=${product.productId}">Dutch</a>
+    </div>
+</section>
 <section>
     <div class="container">
         <div class="jumbotron">
-            <h1>Product details</h1>
-            <p>All the available products in our store</p>
+            <h1><spring:message code="product.body.title"/></h1>
+            <p><spring:message code="product.body.subtitle"/></p>
         </div>
     </div>
 </section>
@@ -30,26 +35,26 @@
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>
-                <strong>Item code : </strong><span class="label label-warning">${product.productId}</span>
+                <strong><spring:message code="product.body.itemCode"/> : </strong><span class="label label-warning">${product.productId}</span>
             </p>
             <p>
-                <strong>Manufacturer : </strong> ${product.manufacturer}
+                <strong><spring:message code="product.body.manufacturer"/> : </strong> ${product.manufacturer}
             </p>
             <p>
-                <strong>Category : </strong> ${product.category}
+                <strong><spring:message code="product.body.category"/> : </strong> ${product.category}
             </p>
             <p>
-                <strong>Available units in stock : </strong> ${product.unitsInStock}
+                <strong><spring:message code="product.body.unitsInStock"/> : </strong> ${product.unitsInStock}
             </p>
-            <h4>${product.unitPrice} USD</h4>
+            <h4>${product.unitPrice} <spring:message code="currency.mnemonic"/></h4>
             <p>
-                <a href="<spring:url value="/market/products"/>" class="btn btn-default"><span class="glyphicon glyphicon-hand-left"></span> Back </a>
+                <a href="<spring:url value="/market/products"/>" class="btn btn-default"><span class="glyphicon glyphicon-hand-left"></span> <spring:message code="button.value.back"/> </a>
                 <a href="#" class="btn btn-warning btn-large">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Order Now
+                    <span class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="product.button.value.orderNow"/>
                 </a>
             </p>
             <c:if test="${hasManual}">
-                <p>Download <a href="<c:url value="/pdf/manual-${product.productId}.pdf"/>">manual</a></p>
+                <p><spring:message code="product.body.download"/> <a href="<c:url value="/pdf/manual-${product.productId}.pdf"/>"><spring:message code="product.body.manual"/></a></p>
             </c:if>
         </div>
     </div>
