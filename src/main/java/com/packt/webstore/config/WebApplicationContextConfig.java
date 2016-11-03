@@ -1,6 +1,7 @@
 package com.packt.webstore.config;
 
 import com.packt.webstore.domain.Product;
+import com.packt.webstore.interceptor.ProcessingTimeLogInterceptor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -51,6 +53,11 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("/resources/images/");
         registry.addResourceHandler("/pdf/**")
                 .addResourceLocations("/resources/pdf/");
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new ProcessingTimeLogInterceptor());
     }
 
     @Bean
