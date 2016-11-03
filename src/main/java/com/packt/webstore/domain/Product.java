@@ -1,5 +1,6 @@
 package com.packt.webstore.domain;
 
+import com.packt.webstore.validator.ProductId;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ import java.math.BigDecimal;
 public class Product implements Serializable {
 
     @Pattern(regexp = "P[1-9]\\d*", message = "{Pattern.Product.productId.validation}")
+    @ProductId
     private String productId;
 
     @Size(min = 4, max = 50, message = "{Size.Product.name.validation}")
