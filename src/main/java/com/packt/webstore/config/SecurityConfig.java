@@ -16,8 +16,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("john").password("pa55word").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("root123").roles("USER", "ADMIN");
+        auth.inMemoryAuthentication().withUser("john").password("pa55word").roles("USER")
+                .and().withUser("admin").password("root123").roles("USER", "ADMIN");
     }
 
     @Override
@@ -25,9 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity.formLogin().loginPage("/login")
                 .usernameParameter("userId")
-                .passwordParameter("password");
-
-        httpSecurity.formLogin()
+                .passwordParameter("password")
                 .defaultSuccessUrl("/market/products/add")
                 .failureUrl("/login?error");
 
