@@ -1,13 +1,17 @@
 package com.packt.webstore.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by Erling Molde on 02.11.2016.
  */
+@XmlRootElement
 public class Product implements Serializable {
     private String productId;
     private String name;
@@ -19,7 +23,9 @@ public class Product implements Serializable {
     private long unitsInOrder;
     private boolean discontinued;
     private String condition;
+    @JsonIgnore
     private MultipartFile productImage;
+    @JsonIgnore
     private MultipartFile productManual;
 
     public Product() {
@@ -112,6 +118,7 @@ public class Product implements Serializable {
         this.condition = condition;
     }
 
+    @XmlTransient
     public MultipartFile getProductImage() {
         return productImage;
     }
@@ -120,6 +127,7 @@ public class Product implements Serializable {
         this.productImage = productImage;
     }
 
+    @XmlTransient
     public MultipartFile getProductManual() {
         return productManual;
     }
