@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @XmlRootElement
 public class Product implements Serializable {
 
-    @Pattern(regexp = "P[1-9]+", message = "{Pattern.Product.productId.validation}")
+    @Pattern(regexp = "P[1-9]\\d*", message = "{Pattern.Product.productId.validation}")
     private String productId;
 
     @Size(min = 4, max = 50, message = "{Size.Product.name.validation}")
@@ -32,8 +32,13 @@ public class Product implements Serializable {
 
     private String description;
     private String manufacturer;
+
+    @NotNull(message = "{NotNull.Product.category.validation}")
     private String category;
+
+    @Min(value = 0, message = "{Min.Product.unitsInStock.validation}")
     private long unitsInStock;
+
     private long unitsInOrder;
     private boolean discontinued;
     private String condition;
