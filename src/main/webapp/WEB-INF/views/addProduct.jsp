@@ -102,6 +102,13 @@
                 </div>
             </div>
 
+            <div class="form-group form-group-lg">
+                <label class="control-label col-lg-2" for="productManual"><spring:message code="addProduct.form.productManual.label"/></label>
+                <div class="col-lg-10">
+                    <input type="file" name="productManual" id="productManual" class="form-control input-lg"/>
+                </div>
+            </div>
+
             <div class="form-group" form-group-lg>
                 <div class="col-lg-offset-2 col-lg-10">
                     <input type="submit" id="btnAdd" class="btn btn-primary" value="Add"/>

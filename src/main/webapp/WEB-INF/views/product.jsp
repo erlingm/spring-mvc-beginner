@@ -48,6 +48,9 @@
                     <span class="glyphicon glyphicon-shopping-cart"></span> Order Now
                 </a>
             </p>
+            <c:if test="${hasManual}">
+                <p>Download <a href="<c:url value="/pdf/manual-${product.productId}.pdf"/>">manual</a></p>
+            </c:if>
         </div>
     </div>
 </section>

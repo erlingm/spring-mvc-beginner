@@ -4,6 +4,7 @@ import com.packt.webstore.domain.Product;
 import com.packt.webstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -77,8 +79,13 @@ public class ProductController {
     }
 
     @RequestMapping("/product")
-    public String getProductById(@RequestParam("id") String productId, Model model) {
-        model.addAttribute("product", productService.getProductById(productId));
+    public String getProductById(@RequestParam("id") String productId, Model model, HttpServletRequest request) {
+        ServletContext servletContext = request.getServletContext();
+        Product product = productService.getProductById(productId);
+        model.addAttribute("product", product);
+        String pdfDirectory = servletContext.getRealPath("/resources/pdf/manual-");
+        File manualFile = new File(pdfDirectory + product.getProductId() + ".pdf");
+        model.addAttribute("hasManual", manualFile.exists());
         return "product";
     }
 
@@ -94,15 +101,27 @@ public class ProductController {
         String[] suppressedFields = result.getSuppressedFields();
         if (suppressedFields.length > 0)
             throw new RuntimeException("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
-        MultipartFile productImage = newProduct.getProductImage();
-        String imageDirectory = request.getSession().getServletContext().getRealPath("/resources/images/");
-        if (imageDirectory != null && productImage != null && !productImage.isEmpty()) {
-            try {
-                File dest = new File(imageDirectory + newProduct.getProductId() + ".png");
-                productImage.transferTo(dest);
-            } catch (IOException e) {
-                throw new RuntimeException("Product Image saving failed", e);
-            }
+        String resourceDirectory = request.getSession().getServletContext().getRealPath("/resources/");
+        if (resourceDirectory != null) {
+            MultipartFile productImage = newProduct.getProductImage();
+            if (productImage != null && !productImage.isEmpty())
+                try {
+                    File dest = new File(resourceDirectory + "images/" + newProduct.getProductId() + ".png");
+                    productImage.transferTo(dest);
+                } catch (IOException e) {
+                    throw new RuntimeException("Product Image saving failed", e);
+                }
+            MultipartFile productManual = newProduct.getProductManual();
+            if (productManual != null && !productManual.isEmpty())
+                try {
+                    File pdfDirectory = new File(resourceDirectory + "/pdf");
+                    if (!pdfDirectory.exists())
+                        pdfDirectory.mkdirs();
+                    File dest = new File(pdfDirectory + "/manual-" + newProduct.getProductId() + ".pdf");
+                    productManual.transferTo(dest);
+                } catch (IOException e) {
+                    throw new RuntimeException("Product Manual saving failed", e);
+                }
         }
         productService.addProduct(newProduct);
         return "redirect:/market/products";
@@ -116,7 +135,7 @@ public class ProductController {
 
     @InitBinder
     public void initializeBinder(WebDataBinder binder) {
-        binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer", "category", "unitsInStock", "condition", "productImage");
+        binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer", "category", "unitsInStock", "condition", "productImage", "productManual");
 
         /* Example of customizing a PropertyEditor to translate java.util.Date from a form to a bean */
         DateFormat dateFormat = new SimpleDateFormat("MMM d, YYYY");
