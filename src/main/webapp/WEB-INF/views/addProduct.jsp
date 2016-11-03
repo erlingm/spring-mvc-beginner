@@ -29,24 +29,28 @@
 
 <section class="container">
     <form:form method="post" modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
+        <form:errors path="*" cssClass="alert alert-danger" element="div"/>
         <fieldset>
             <legend><spring:message code="addProduct.form.legend"/></legend>
             <div class="form-group form-group-lg">
                 <label class="control-label col-lg-2" for="productId"><spring:message code="addProduct.form.productId.label" /></label>
                 <div class="col-lg-10">
                     <form:input path="productId" id="productId" class="form-control"/>
+                    <form:errors path="productId" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="form-group form-group-lg">
                 <label class="control-label col-lg-2" for="name"><spring:message code="addProduct.form.name.label"/></label>
                 <div class="col-lg-10">
                     <form:input path="name" id="name" cssClass="form-control"/>
+                    <form:errors path="name" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="form-group form-group-lg">
                 <label class="control-label col-lg-2" for="unitPrice"><spring:message code="addProduct.form.unitPrice.label"/></label>
                 <div class="col-lg-10">
                     <form:input path="unitPrice" id="unitPrice" cssClass="form-control"/>
+                    <form:errors path="unitPrice" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="form-group form-group-lg">
