@@ -1,5 +1,6 @@
 package com.packt.webstore.domain;
 
+import com.packt.webstore.validator.Category;
 import com.packt.webstore.validator.ProductId;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +37,7 @@ public class Product implements Serializable {
     private String manufacturer;
 
     @NotNull(message = "{NotNull.Product.category.validation}")
+    @Category
     private String category;
 
     @Min(value = 0, message = "{Min.Product.unitsInStock.validation}")

@@ -63,6 +63,7 @@
                 <label class="control-label col-lg-2" for="category"><spring:message code="addProduct.form.category.label"/></label>
                 <div class="col-lg-10">
                     <form:input path="category" id="category" cssClass="form-control"/>
+                    <form:errors path="category" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="form-group form-group-lg">
