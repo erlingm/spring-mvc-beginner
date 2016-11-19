@@ -12,7 +12,7 @@ public class CategoryValidator implements ConstraintValidator<Category, String> 
     private List<String> allowedCategories;
 
     public CategoryValidator() {
-        allowedCategories = Arrays.asList("Smartphone", "Tablet", "Laptop");
+        allowedCategories = Arrays.asList("Smartphone", "Tablet", "Laptop", "Head phones");
     }
 
     public void initialize(Category constraintAnnotation) {
