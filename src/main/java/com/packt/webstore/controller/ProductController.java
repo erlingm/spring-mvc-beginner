@@ -4,7 +4,7 @@ import com.packt.webstore.domain.Product;
 import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
 import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.ProductService;
-import com.packt.webstore.validator.UnitsInStockValidator;
+import com.packt.webstore.validator.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -48,7 +48,7 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    private UnitsInStockValidator unitsInStockValidator;
+    private ProductValidator productValidator;
 
     @RequestMapping("/products")
     public String list(Model model) {
@@ -160,7 +160,7 @@ public class ProductController {
                 "category", "unitsInStock", "condition",
                 "productImage", "productManual",
                 "language");
-        binder.setValidator(unitsInStockValidator);
+        binder.setValidator(productValidator);
 
         /* Example of customizing a PropertyEditor to translate java.util.Date from a form to a bean */
         DateFormat dateFormat = new SimpleDateFormat("MMM d, YYYY");
