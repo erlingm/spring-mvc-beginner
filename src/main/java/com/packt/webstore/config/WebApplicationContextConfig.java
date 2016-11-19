@@ -3,6 +3,7 @@ package com.packt.webstore.config;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.interceptor.ProcessingTimeLogInterceptor;
 import com.packt.webstore.interceptor.PromoCodeInterceptor;
+import com.packt.webstore.validator.ProductImageValidator;
 import com.packt.webstore.validator.ProductValidator;
 import com.packt.webstore.validator.UnitsInStockValidator;
 import org.springframework.context.MessageSource;
@@ -88,6 +89,7 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
     public ProductValidator productValidator() {
         Set<Validator> springValidators = new HashSet<>();
         springValidators.add(new UnitsInStockValidator());
+        springValidators.add(new ProductImageValidator());
 
         ProductValidator productValidator = new ProductValidator();
         productValidator.setSpringValidators(springValidators);

@@ -21,10 +21,10 @@
     </div>
 </section>
 <section class="container">
-        <div class="jumbotron">
-            <h1><spring:message code="addProduct.body.title"/></h1>
-            <p><spring:message code="addProduct.body.subtitle"/></p>
-        </div>
+    <div class="jumbotron">
+        <h1><spring:message code="addProduct.body.title"/></h1>
+        <p><spring:message code="addProduct.body.subtitle"/></p>
+    </div>
 </section>
 
 <section class="container">
@@ -91,6 +91,7 @@
                 <label class="control-label col-lg-2" for="productImage"><spring:message code="addProduct.form.productImage.label"/></label>
                 <div class="col-lg-10">
                     <input type="file" name="productImage" id="productImage" class="form-control input-lg"/>
+                    <form:errors path="productImage" cssClass="text-danger"/>
                 </div>
             </div>
 
