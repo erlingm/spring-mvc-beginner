@@ -3,7 +3,6 @@ package com.packt.webstore.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * Created by Erling Molde on 19.11.2016.
@@ -42,8 +41,7 @@ public class Cart implements Serializable {
     }
 
     public void updateGrandTotal() {
-        Function<CartItem, BigDecimal> totalMapper = CartItem::getTotalPrice;
-        BigDecimal grandTotal = cartItems.stream().map(totalMapper).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal grandTotal = cartItems.stream().map(CartItem::getTotalPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
         this.setGrandTotal(grandTotal);
     }
 
