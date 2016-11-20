@@ -6,9 +6,9 @@ var cartApp = angular.module('cartApp', []);
 cartApp.controller('cartCtrl', function ($scope, $http) {
 
     $scope.refreshCart = function (cartId) {
-        $http, get('/webstore/rest/cart/' + $scope.cartId)
+        $http.get('/webstore/rest/cart/' + $scope.cartId)
             .success(function (data) {
-                $scope.cart = data
+                $scope.cart = data;
             });
     };
 
