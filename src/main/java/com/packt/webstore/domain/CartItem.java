@@ -26,6 +26,7 @@ public class CartItem implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+        this.updateTotalPrice();
     }
 
     public int getQuantity() {
@@ -37,6 +38,7 @@ public class CartItem implements Serializable {
     }
 
     public BigDecimal getTotalPrice() {
+        this.updateTotalPrice();
         return totalPrice;
     }
 

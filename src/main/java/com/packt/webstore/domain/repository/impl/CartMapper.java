@@ -8,7 +8,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Erling Molde on 19.11.2016.
@@ -27,8 +29,10 @@ public class CartMapper implements RowMapper<Cart> {
         String id = rs.getString("ID");
         Cart cart = new Cart(id);
 
-        String SQL = String.format("SELECT * FROM CART_ITEM WHERE CART_ID = '%s'", id);
-        List<CartItem> cartItems = jdbcTemplate.query(SQL, cartItemMapper);
+        String SQL = "SELECT * FROM CART_ITEM WHERE CART_ID = :id";
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        List<CartItem> cartItems = jdbcTemplate.query(SQL, params, cartItemMapper);
         cart.setCartItems(cartItems);
 
         return cart;

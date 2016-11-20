@@ -21,6 +21,7 @@ public class Cart implements Serializable {
     }
 
     public BigDecimal getGrandTotal() {
+        updateGrandTotal();
         return grandTotal;
     }
 

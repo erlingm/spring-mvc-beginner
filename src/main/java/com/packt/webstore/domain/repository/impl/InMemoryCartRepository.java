@@ -41,12 +41,12 @@ public class InMemoryCartRepository implements CartRepository {
 
             Product productById = productService.getProductById(cartItemDto.getProductId());
 
-            String INSERT_CART_ITEM_SQL = "INSERT INTO CART_ITEM(ID,PRODUCT_ID,CART_ID,QUANTITY" +
-                    " VALUES (:id,:product_id,:cart_id,:quantity";
+            String INSERT_CART_ITEM_SQL = "INSERT INTO CART_ITEM(ID,PRODUCT_ID,CART_ID,QUANTITY)" +
+                    " VALUES (:id,:product_id,:cart_id,:quantity)";
 
             Map<String, Object> cartItemsParams = new HashMap<>();
             cartItemsParams.put("id", cartItemDto.getId());
-            cartItemsParams.put("product_id", cartItemDto.getProductId());
+            cartItemsParams.put("product_id", productById.getProductId());
             cartItemsParams.put("cart_id", cartDto.getId());
             cartItemsParams.put("quantity", cartItemDto.getQuantity());
 
@@ -95,8 +95,8 @@ public class InMemoryCartRepository implements CartRepository {
 
     @Override
     public void addItem(String cartId, String productId) {
-        String SQL = null;
-        Cart cart = null;
+        String SQL;
+        Cart cart;
 
         cart = read(cartId);
         if (cart == null) {
@@ -113,7 +113,7 @@ public class InMemoryCartRepository implements CartRepository {
 
         Map<String, Object> cartItemsParams = new HashMap<>();
         if (cart.getItemByProductId(productId) == null) {
-            SQL = "INSERT INTO CART_ITEM (ID, PRODUCT_ID, CART_ID, QUANTITY) VALUES (:id, :productId, :cartId, quantity)";
+            SQL = "INSERT INTO CART_ITEM (ID, PRODUCT_ID, CART_ID, QUANTITY) VALUES (:id, :productId, :cartId, :quantity)";
             cartItemsParams.put("id", cartId + productId);
             cartItemsParams.put("quantity", 1);
         } else {
