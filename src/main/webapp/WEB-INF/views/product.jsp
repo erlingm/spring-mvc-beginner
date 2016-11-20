@@ -11,6 +11,8 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="/webstore/resources/js/controllers.js"></script>
     <title><spring:message code="product.page.title"/></title>
 </head>
 <body>
@@ -28,7 +30,7 @@
     </div>
 </section>
 
-<section class="container">
+<section class="container" ng-app="cartApp">
     <div class="row">
         <div class="col-md-5"><img src="<c:url value="/img/${product.productId}.png"/>" alt="image" style="width: 100%"/></div>
         <div class="col-md-5">
@@ -47,11 +49,12 @@
                 <strong><spring:message code="product.body.unitsInStock"/> : </strong> ${product.unitsInStock}
             </p>
             <h4>${product.unitPrice} <spring:message code="currency.mnemonic"/></h4>
-            <p>
+            <p ng-controller="cartCtrl">
                 <a href="<spring:url value="/market/products"/>" class="btn btn-default"><span class="glyphicon glyphicon-hand-left"></span> <spring:message code="button.value.back"/> </a>
-                <a href="#" class="btn btn-warning btn-large">
+                <a href="#" class="btn btn-warning btn-large" ng-click="addToCart('${product.productId}')">
                     <span class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="product.button.value.orderNow"/>
                 </a>
+                <a href="<spring:url value="/cart"/>" class="btn btn-default"><span class="glyphicon glyphicon-hand-right"></span> View Cart</a>
             </p>
             <c:if test="${hasManual}">
                 <p><spring:message code="product.body.download"/> <a href="<c:url value="/pdf/manual-${product.productId}.pdf"/>"><spring:message code="product.body.manual"/></a></p>
