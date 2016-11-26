@@ -94,6 +94,16 @@ public class InMemoryCartRepository implements CartRepository {
     }
 
     @Override
+    public void clearCart(String cartId) {
+        String SQL_DELETE_CART_ITEM = "DELETE FROM CART_ITEM WHERE CART_ID = :id";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", cartId);
+
+        jdbcTemplate.update(SQL_DELETE_CART_ITEM, params);
+    }
+
+    @Override
     public void addItem(String cartId, String productId) {
         String SQL;
         Cart cart;
