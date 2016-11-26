@@ -57,6 +57,7 @@
         </table>
 
         <a href="<spring:url value="/market/products"/>" class="btn btn-default"><span class="glyphicon glyphicon-hand-left"></span> Continue Shopping</a>
+        <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"><span class="glyphicon glyphicon-shopping-cart"></span> Check Out</a>
 
     </div>
 </section>
