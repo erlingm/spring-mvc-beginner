@@ -90,6 +90,7 @@ public class InMemoryOrderRepository implements OrderRepository {
         params.put("streetName", address.getStreetName());
         params.put("areaName", address.getAreaName());
         params.put("state", address.getState());
+        params.put("country", address.getCountry());
         params.put("zip", address.getZipCode());
 
         SqlParameterSource paramSource = new MapSqlParameterSource(params);
@@ -101,11 +102,11 @@ public class InMemoryOrderRepository implements OrderRepository {
 
     private long createOrder(Order order) {
 
-        String SQL = "INSERT INTO ORDERS(CART_ID,CUSTOMER_ID,SHIPPING_DETAIL_ID) VALUES (:cartId, :customerId, :shppingDetailId)";
+        String SQL = "INSERT INTO ORDERS(CART_ID,CUSTOMER_ID,SHIPPING_DETAIL_ID) VALUES (:cartId, :customerId, :shippingDetailId)";
 
         Map<String, Object> params = new HashMap<>();
         params.put("id", order.getOrderId());
-        params.put("cartId", order.getCart());
+        params.put("cartId", order.getCart().getId());
         params.put("customerId", order.getCustomer().getCustomerId());
         params.put("shippingDetailId", order.getShippingDetail().getId());
 

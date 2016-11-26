@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -79,7 +79,7 @@
                                 </td>
                                 <td class="col-md-1" style="text-align: center">${cartItem.quantity}</td>
                                 <td class="col-md-1 text-center">${cartItem.product.unitPrice}</td>
-                                <td class="col-md-1 text-center">${cartItem.product.totalPrice}</td>
+                                <td class="col-md-1 text-center">${cartItem.totalPrice}</td>
                             </tr>
                         </c:forEach>
                         <tr>

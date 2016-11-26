@@ -30,7 +30,7 @@
 
         <div>
             <a class="btn btn-danger pull-left" ng-click="clearCart()"><span class="glyphicon glyphicon-remove-sign"></span> Clear Cart</a>
-            <a href="#" class="btn btn-success pull-right"><span class="glyphicon glyphicon-shopping-cart"> Check out</span></a>
+            <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"><span class="glyphicon glyphicon-shopping-cart"> Check Out</span></a>
         </div>
         <table class="table table-hover">
             <tr>
@@ -57,7 +57,6 @@
         </table>
 
         <a href="<spring:url value="/market/products"/>" class="btn btn-default"><span class="glyphicon glyphicon-hand-left"></span> Continue Shopping</a>
-        <a href="<spring:url value="/checkout?cartId=${cartId}"/>" class="btn btn-success pull-right"><span class="glyphicon glyphicon-shopping-cart"></span> Check Out</a>
 
     </div>
 </section>

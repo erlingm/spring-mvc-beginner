@@ -5,7 +5,6 @@ import com.packt.webstore.domain.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +16,7 @@ import java.util.Map;
 /**
  * Created by Erling Molde on 02.11.2016.
  */
-@Repository
+// @Repository
 public class InMemoryCustomerRepository implements CustomerRepository {
 
     @Autowired
@@ -34,8 +33,8 @@ public class InMemoryCustomerRepository implements CustomerRepository {
         Map<String, Object> params = new HashMap<>();
         params.put("id", newCustomer.getCustomerId());
         params.put("name", newCustomer.getName());
-        params.put("address", newCustomer.getAddress());
-        params.put("noOfOrders", newCustomer.getNoOfOrdersMade());
+        params.put("address", newCustomer.getBillingAddress());
+        // params.put("noOfOrders", newCustomer.getNoOfOrdersMade());
         jdbcTemplate.update(sql, params);
     }
 
@@ -45,8 +44,8 @@ public class InMemoryCustomerRepository implements CustomerRepository {
             Customer c = new Customer();
             c.setCustomerId((Long) rs.getObject("ID"));
             c.setName(rs.getString("NAME"));
-            c.setAddress(rs.getString("ADDRESS"));
-            c.setNoOfOrdersMade(rs.getLong("NUMBER_OF_ORDERS"));
+            // c.setBillingAddress(rs.getString("BILLING_ADDRESS"));
+            // c.setNoOfOrdersMade(rs.getLong("NUMBER_OF_ORDERS"));
             return c;
         }
     }

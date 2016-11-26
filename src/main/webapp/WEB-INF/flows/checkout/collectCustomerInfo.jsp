@@ -29,56 +29,56 @@
             <div class="form-group">
                 <label class="control-label col-lg-2" for="name">Name</label>
                 <div class="col-lg-10">
-                    <form:input path="name" id="name" cssClass="form-control input-large"/>
+                    <form:input path="name" id="name" cssClass="form-control input-lg"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-2" for="doorNo">Door No</label>
                 <div class="col-lg-10">
-                    <form:input path="billingAddress.doorNo" id="doorNo" cssClass="form-control input-large"/>
+                    <form:input path="billingAddress.doorNo" id="doorNo" cssClass="form-control input-lg"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-2" for="streetName">Street Name</label>
                 <div class="col-lg-10">
-                    <form:input path="billingAddress.streetName" id="streetName" cssClass="form-control input-large"/>
+                    <form:input path="billingAddress.streetName" id="streetName" cssClass="form-control input-lg"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-2" for="areaName">Area Name</label>
                 <div class="col-lg-10">
-                    <form:input path="billingAddress.areaName" id="areaName" cssClass="form-control input-large"/>
+                    <form:input path="billingAddress.areaName" id="areaName" cssClass="form-control input-lg"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-2" for="state">State</label>
                 <div class="col-lg-10">
-                    <form:input path="billingAddress.state" id="state" cssClass="form-control input-large"/>
+                    <form:input path="billingAddress.state" id="state" cssClass="form-control input-lg"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-2" for="country">Country</label>
                 <div class="col-lg-10">
-                    <form:input path="billingAddress.country" id="country" cssClass="form-control input-large"/>
+                    <form:input path="billingAddress.country" id="country" cssClass="form-control input-lg"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-2" for="zipCode">Zip Code</label>
                 <div class="col-lg-10">
-                    <form:input path="billingAddress.zipCode" id="zipCode" cssClass="form-control input-large"/>
+                    <form:input path="billingAddress.zipCode" id="zipCode" cssClass="form-control input-lg"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-2" for="phoneNumber">Phone Number</label>
                 <div class="col-lg-10">
-                    <form:input path="phoneNumber" id="phoneNumber" cssClass="form-control input-large"/>
+                    <form:input path="phoneNumber" id="phoneNumber" cssClass="form-control input-lg"/>
                 </div>
             </div>
 

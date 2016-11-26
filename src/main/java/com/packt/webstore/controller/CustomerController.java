@@ -3,7 +3,6 @@ package com.packt.webstore.controller;
 import com.packt.webstore.domain.Customer;
 import com.packt.webstore.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by Erling Molde on 02.11.2016.
  */
-@Controller
+// @Controller
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
