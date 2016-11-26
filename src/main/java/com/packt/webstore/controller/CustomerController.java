@@ -2,7 +2,6 @@ package com.packt.webstore.controller;
 
 import com.packt.webstore.domain.Customer;
 import com.packt.webstore.service.CustomerService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

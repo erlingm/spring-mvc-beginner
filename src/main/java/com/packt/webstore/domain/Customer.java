@@ -8,17 +8,18 @@ import java.io.Serializable;
 public class Customer implements Serializable {
     private Long customerId;
     private String name;
-    private String address;
-    private long noOfOrdersMade;
+    private Address billingAddress;
+    private String phoneNumber;
 
     public Customer() {
+        super();
+        this.billingAddress = new Address();
     }
 
-    public Customer(Long customerId, String name, String address, long noOfOrdersMade) {
+    public Customer(Long customerId, String name) {
+        this();
         this.customerId = customerId;
         this.name = name;
-        this.address = address;
-        this.noOfOrdersMade = noOfOrdersMade;
     }
 
     public Long getCustomerId() {
@@ -37,20 +38,25 @@ public class Customer implements Serializable {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public Address getBillingAddress() {
+        return billingAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
-    public long getNoOfOrdersMade() {
-        return noOfOrdersMade;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setNoOfOrdersMade(long noOfOrdersMade) {
-        this.noOfOrdersMade = noOfOrdersMade;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return customerId != null ? customerId.hashCode() : 0;
     }
 
     @Override
@@ -63,11 +69,5 @@ public class Customer implements Serializable {
         Customer customer = (Customer) o;
 
         return customerId != null ? customerId.equals(customer.customerId) : customer.customerId == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return customerId != null ? customerId.hashCode() : 0;
     }
 }
