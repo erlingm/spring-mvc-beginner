@@ -3,6 +3,7 @@ package com.packt.webstore.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
@@ -40,5 +41,10 @@ public class RootApplicationContextConfig {
     @Bean
     public NamedParameterJdbcTemplate getJdbcTemplate() {
         return new NamedParameterJdbcTemplate(dataSource());
+    }
+
+    @Bean
+    public JdbcTemplate getJava5JdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 }

@@ -8,7 +8,20 @@
     <action-state id="addCartToOrder">
         <evaluate expression="cartServiceImpl.validate(requestParameters.cartId)" result="order.cart"/>
         <transition to="invalidCartWarning" on-exception="com.packt.webstore.exception.InvalidCartException"/>
-        <transition to="collectCustomerInfo"/>
+        <transition to="selectCustomer"/>
+    </action-state>
+
+    <view-state id="selectCustomer" model="order">
+        <transition on="customerSelected" to="customerDecison"/>
+    </view-state>
+
+    <decision-state id="customerDecison">
+        <if test="customerServiceImpl.isCustomerExist(order.customer.customerId)" then="fillInCustomerInfo" else="collectCustomerInfo"/>
+    </decision-state>
+
+    <action-state id="fillInCustomerInfo">
+        <evaluate expression="customerServiceImpl.getCustomer(order.customer.customerId)" result="order.customer"/>
+        <transition to="collectShippingDetail"/>
     </action-state>
 
     <view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
