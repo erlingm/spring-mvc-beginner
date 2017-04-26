@@ -58,4 +58,9 @@ public class CustomerServiceImpl implements CustomerService {
         Address billingAddress = customer.getBillingAddress();
         addressRepository.isExistAddress(billingAddress.getId());
     }
+
+    @Override
+    public void addCustomer(Customer newCustomer) {
+
+    }
 }

@@ -1,32 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <title><spring:message code="addProduct.page.title"/></title>
-</head>
-<body>
-<section class="container">
-    <div class="pull-right">
-        <a href="?language=en">English</a> | <a href="?language=nl">Dutch</a> | <a href="<c:url value="/logout"/>">Logout</a>
-    </div>
-</section>
-<section class="container">
-    <div class="jumbotron">
-        <h1><spring:message code="addProduct.body.title"/></h1>
-        <p><spring:message code="addProduct.body.subtitle"/></p>
-    </div>
-</section>
-
 <section class="container">
     <form:form method="post" modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
         <form:errors path="*" cssClass="alert alert-danger" element="div"/>
@@ -110,5 +85,3 @@
         </fieldset>
     </form:form>
 </section>
-</body>
-</html>

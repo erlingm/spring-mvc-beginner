@@ -15,4 +15,6 @@ public interface CustomerService {
     Customer getCustomer(String customerId);
 
     void saveCustomer(Customer customer);
+
+    void addCustomer(Customer newCustomer);
 }
